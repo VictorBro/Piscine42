@@ -79,7 +79,7 @@ void init_walls(t_walls *walls)
 	i = 0;
 	//to do: do i need to init the t_image variables?  is my init ok?
 
-	init_img((walls->no_textu));
+	init_img(&(walls->no_textu));
 /* 	init_img(walls->so_textu);
 	init_img(walls->ea_textu);
 	init_img(walls->we_textu); */
@@ -104,8 +104,7 @@ void init_info(t_info *info)
 	info->y = SCREEN_HEIGHT / 2 - SQUARE_SIZE / 2;
 	info->dir = 0;
 	info->angle = 0;
-	info->walls = ft_calloc(1, sizeof(t_walls));
-	init_walls((info->walls));
+	init_walls(&(info->walls));
 
 	//init_walls(info->walls);
 

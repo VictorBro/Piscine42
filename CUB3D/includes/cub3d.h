@@ -89,10 +89,10 @@ typedef struct s_rgb
 
 typedef struct s_walls
 {
-	t_image			*no_textu;
-	t_image			*so_textu;
-	t_image			*ea_textu;
-	t_image			*we_textu;
+	t_image			no_textu;
+	t_image			so_textu;
+	t_image			ea_textu;
+	t_image			we_textu;
 	int 			floor[3];
 	int 			ceiling[3];
 }				t_walls;
@@ -120,7 +120,7 @@ typedef struct	s_info
 	int		x;
 	int		y;
 	int		dir;
-	t_walls *walls;
+	t_walls walls;
 	t_image	img;
 	int		angle;
 }				t_info;
