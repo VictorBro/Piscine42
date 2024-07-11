@@ -1,9 +1,9 @@
 NAME = bsq
 SRC_DIR =
-FILES = main.c helpers_1.c helpers_2.c
+FILES = main.c dp.c helpers_1.c helpers_2.c helpers_3.c helpers_4.c
 INCLUDE_DIR =
 CC = cc
-CFLAGS = -g -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror
 OBJECTS = $(FILES:.c=.o)
 
 .PHONY: all

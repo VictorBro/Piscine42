@@ -1,91 +1,78 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   ft_std.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vbronov <vbronov@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/09 21:39:52 by vbronov           #+#    #+#             */
-/*   Updated: 2024/07/09 21:39:56 by vbronov          ###   ########.fr       */
+/*   Created: 2024/07/09 21:33:04 by vbronov           #+#    #+#             */
+/*   Updated: 2024/07/09 21:33:04 by vbronov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "bsq.h"
 
-int	word_count(char *str, char sep)
+int	ft_strlen(char *str)
 {
-	int	count;
-	int	in_word;
+	int	len;
 
-	count = 0;
-	in_word = 0;
-	while (*str)
-	{
-		if (!(*str == sep) && in_word == 0)
-		{
-			in_word = 1;
-			count++;
-		}
-		else if (*str == sep)
-		{
-			in_word = 0;
-		}
-		str++;
-	}
-	return (count);
+	len = 0;
+	while (str[len] != '\0')
+		len++;
+	return (len);
 }
 
-char	*word_dup(char *start, int len)
+char	*ft_strcpy(char *dst, char *src)
 {
-	char	*word;
-	int		i;
+	int	i;
 
-	word = (char *)malloc((len + 1) * sizeof(char));
-	if (!word)
-		return (NULL);
 	i = 0;
-	while (i < len)
+	while (src[i])
 	{
-		word[i] = start[i];
+		dst[i] = src[i];
 		i++;
 	}
-	word[i] = '\0';
-	return (word);
+	dst[i] = '\0';
+	return (dst);
 }
 
-char	**ft_split(char *str, char sep)
+char	*ft_strncpy(char *dst, char *src, size_t n)
 {
-	char	**result;
-	int		i;
-	int		word_len;
-	int		words;
+	size_t	i;
 
-	words = word_count(str, sep);
-	result = (char **)malloc((words + 1) * sizeof(char *));
-	if (!result)
-		return (NULL);
 	i = 0;
-	while (*str)
+	while (src[i] && i < n)
 	{
-		while (*str && (*str == sep))
-			str++;
-		word_len = 0;
-		while (str[word_len] && !(str[word_len] == sep))
-			word_len++;
-		if (word_len > 0)
-		{
-			result[i] = word_dup(str, word_len);
-			if (!result[i])
-			{
-				while (i > 0)
-					free(result[--i]);
-				free(result);
-				return (NULL);
-			}
-			i++;
-			str += word_len;
-		}
+		dst[i] = src[i];
+		i++;
 	}
-	result[i] = NULL;
-	return (result);
+	while (i < n)
+	{
+		dst[i] = '\0';
+		i++;
+	}
+	return (dst);
+}
+
+int	ft_error(char *str, int ret)
+{
+	write(1, str, ft_strlen(str));
+	return (ret);
+}
+
+int	ft_atoi(char *str)
+{
+	int	i;
+	int	res;
+
+	i = 0;
+	res = 0;
+	while (str[i] >= '0' && str[i] <= '9')
+	{
+		res = res * 10 + str[i] - '0';
+		i++;
+	}
+	if (res < 0)
+		return (0);
+	return (res);
 }
